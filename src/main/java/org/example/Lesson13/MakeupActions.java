@@ -1,10 +1,8 @@
 package org.example.Lesson13;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -54,4 +52,29 @@ public class MakeupActions {
     public WebElement getLoginButtonElement() {
         return сhromeDriver.findElement(By.xpath("//button[(contains(text(),'Увійти'))]"));
     }
+
+    public WebElement getSelectProduct() {
+        return сhromeDriver.findElement(By.xpath("//div[(contains(@class,'simple-slider-list__link'))]/a[contains(@href, '/ua/product/657505/')]"));
+    }
+
+    public WebElement getBuy() {
+        return сhromeDriver.findElement(By.xpath("//div[(contains(@data-id,'657505'))]/div/div[(contains(.,'Купити'))]"));
+    }
+
+    public WebElement getCheckout() {
+        return сhromeDriver.findElement(By.xpath("//div[(contains(@class,'align-center'))]/div[(contains(., 'Оформити замовлення'))]"));
+    }
+
+
+    public String getAuthorizedElement() {
+        WebElement element = сhromeDriver.findElement(By.xpath("//div[(contains(@class,'layout'))]/div[(contains(., 'Кабінет'))]"));
+        return element.getText();
+    }
+
+    public String getСompletedPurchase() {
+        WebElement element = сhromeDriver.findElement(By.xpath("//h1[(contains(@class,'page-header'))]"));
+        return element.getText();
+    }
 }
+
+
