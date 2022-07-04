@@ -73,4 +73,71 @@ public class Makeup {
 
         assertTrue(element.equals("Дякуємо за ваше замовлення"));
     }
+
+    @Test
+    public void filtration_with_shouldBeAuthorized() {
+        makeupActions.explicitWait();
+        makeupActions.openSite();
+        makeupActions.implicitWait();
+        actionBuilder
+                .click(makeupActions.getUserAccountElement())
+                .pause(1000);
+
+        actionBuilder
+                .sendKeys(makeupActions.getLoginElement(), "kateryna.test6545@gmail.com")
+                .sendKeys(makeupActions.getPasswordElement(), "TEST54651")
+                .click(makeupActions.getLoginButtonElement())
+                .pause(1000);
+
+        actionBuilder
+                .click(makeupActions.getCategorySelection())
+                .pause(1000)
+                .click(makeupActions.getBrandChoice())
+                .pause(1000)
+                .click(makeupActions.getProductSelection())
+                .build()
+                .perform();
+
+        String element = makeupActions.getFilteredProduct();
+        makeupActions.explicitWait();
+
+        assertTrue(element.equals("MAKEUP>Тіло і ванна>Для тіла>Креми, молочко та лосьйони>Олія для тіла>Кокосове масло \"100% Natural\""));
+
+    }
+
+    @Test
+    public void feedback_with_shouldBeAuthorized() {
+        makeupActions.explicitWait();
+        makeupActions.openSite();
+        makeupActions.implicitWait();
+        actionBuilder
+                .click(makeupActions.getUserAccountElement())
+                .pause(1000);
+
+        actionBuilder
+                .sendKeys(makeupActions.getLoginElement(), "kateryna.test6545@gmail.com")
+                .sendKeys(makeupActions.getPasswordElement(), "TEST54651")
+                .click(makeupActions.getLoginButtonElement())
+                .pause(1000);
+
+        actionBuilder
+                .click(makeupActions.getProductSelection())
+                .click(makeupActions.getLeaveFeedback())
+                .pause(1000)
+                .click(makeupActions.getNameUser())
+                .sendKeys(makeupActions.getNameUser(), "Kateryna")
+                .sendKeys(makeupActions.getEmailUser(), "kateryna.test6545@gmail.com")
+                .click(makeupActions.getGradeUser())
+                .sendKeys(makeupActions.getMessageUser(), "Відмінний товар!")
+                .pause(1000)
+                .click(makeupActions.getAddMessage())
+                .build()
+                .perform();
+
+        String element = makeupActions.getAddedFeedback();
+        makeupActions.explicitWait();
+
+        assertTrue(element.equals("Ваш відгук успішно додано!"));
+
+    }
 }
