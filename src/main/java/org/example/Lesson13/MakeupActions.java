@@ -54,6 +54,7 @@ public class MakeupActions {
     }
 
 
+
     public WebElement getSelectProduct() {
         return сhromeDriver.findElement(By.xpath("//div[(contains(@class,'simple-slider-list__link'))]/a[contains(@href, '/ua/product/657505/')]"));
     }
