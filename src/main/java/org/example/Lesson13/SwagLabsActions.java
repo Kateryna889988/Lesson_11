@@ -41,11 +41,13 @@ public class SwagLabsActions {
         return сhromeDriver.findElement(By.xpath("//input[contains(@name, 'login-button')]"));
     }
 
+
+
     public WebElement getSelectProduct() {
         return сhromeDriver.findElement(By.xpath("//button[contains(@name, 'add-to-cart-sauce-labs-backpack')]"));
     }
 
-    public WebElement getAddToBasket() {
+    public WebElement getAddToBucket() {
         return сhromeDriver.findElement(By.xpath("//a[contains(@class, 'shopping_cart_link')]"));
     }
 
@@ -72,7 +74,6 @@ public class SwagLabsActions {
     public WebElement getProceed() {
         return сhromeDriver.findElement(By.xpath("//input[contains(@name, 'continue')]"));
     }
-
 
     public WebElement getFinish() {
         return сhromeDriver.findElement(By.xpath("//button[contains(@name, 'finish')]"));
