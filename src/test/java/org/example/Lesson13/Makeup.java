@@ -11,16 +11,16 @@ import static org.junit.Assert.assertTrue;
 public class Makeup {
 
     private Actions actionBuilder;
-    private ChromeDriver сhromeDriver;
+    private ChromeDriver driver;
     private MakeupActions makeupActions;
 
     public Makeup() {
         System.setProperty("webdriver.chrome.driver", "C:\\Users\\kozac\\Downloads\\chromedriver_win32\\chromedriver.exe");
         ChromeOptions op = new ChromeOptions();
         op.addArguments("window-size=1300,700");
-        this.сhromeDriver = new ChromeDriver(op);
-        this.actionBuilder = new Actions(сhromeDriver);
-        this.makeupActions = new MakeupActions(сhromeDriver);
+        this.driver = new ChromeDriver(op);
+        this.actionBuilder = new Actions(driver);
+        this.makeupActions = new MakeupActions(driver);
     }
 
     @Test

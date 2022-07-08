@@ -50,7 +50,7 @@ public class SwagLabs {
                 .click(swagLabsActions.getLoginButtonElement())
                 .pause(1000)
                 .click(swagLabsActions.getSelectProduct())
-                .click(swagLabsActions.getAddToBasket())
+                .click(swagLabsActions.getAddToBucket())
                 .pause(1000)
                 .click(swagLabsActions.getVerify())
                 .pause(1000)
