@@ -1,35 +1,29 @@
 package org.example.Lesson14.Makeup;
 
+import org.example.Lesson14.BasePage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
+import org.openqa.selenium.interactions.Actions;
 
-import java.time.Duration;
-
-public class FilterPage {
-
-    By BrandChoiceLocator = By.xpath("//li[(contains(@class,'catalog-checkbox-list__item has-action'))]/a[contains(@href, '/ua/brand/1542095/\')]");
+public class FilterPage extends BasePage {
+    
+    By ClickBrandChoiceLocator = By.xpath("//li[(contains(@class,'action brands__item'))]/a[contains(@href, '/ua/brand/1542095/')]");
+    
     By ProductSelectionLocator = By.xpath("//div[(contains(@class,'simple-slider-list__link'))]/a[contains(@href, '/ua/product/657505/')]");
 
-
-    private final ChromeDriver driver;
-
     public FilterPage(ChromeDriver driver) {
-        this.driver = driver;
+        super(driver);
     }
 
 
-    public FilterPage choiceBrand() {
-        By xpath = BrandChoiceLocator;
-        driver.findElement(xpath).click();
-        return this;
+    public FilterPage clickChoiceBrand() {
+        super.safeClick(ClickBrandChoiceLocator);
+        return new FilterPage(driver);
     }
 
     public ProductPage selectionProduct() {
-        By xpath = ProductSelectionLocator;
-        driver.findElement(xpath).click();
+        super.safeFocusAndClick(ProductSelectionLocator);
         return new ProductPage(driver);
     }
 
@@ -38,14 +32,23 @@ public class FilterPage {
         return element.getText();
     }
 
-    public void explicitWait() {
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+    public FilterPage waitFilterPage() {
+        super.implicitlyWait();
+        return this;
     }
 
-    public FilterPage implicitWait() {
-        String elementForWaiting = "//div[contains(@data-popup-handler, 'auth')]";
-        WebElement element = (new WebDriverWait(driver, Duration.ofSeconds(10)))
-                .until(ExpectedConditions.presenceOfElementLocated(By.xpath(elementForWaiting)));
+    public FilterPage waitBrandChoice() {
+        super.waitClickableElement(ClickBrandChoiceLocator);
+        return this;
+    }
+
+    public FilterPage waitProductSelection() {
+        super.waitClickableElement(ProductSelectionLocator);
+        return this;
+    }
+
+    public FilterPage waitChoiceBrand() {
+        super.waitClickableElement(ClickBrandChoiceLocator);
         return this;
     }
 }

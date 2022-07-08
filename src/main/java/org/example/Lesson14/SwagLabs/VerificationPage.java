@@ -1,5 +1,6 @@
 package org.example.Lesson14.SwagLabs;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.chrome.ChromeDriver;
 
@@ -18,12 +19,14 @@ public class VerificationPage {
         this.driver = driver;
     }
 
+    @Step()
     public VerificationPage clickCheckout() {
         By xpath = VerificationLocator;
         driver.findElement(xpath).click();
         return new VerificationPage(driver);
     }
 
+    @Step()
     public VerificationPage completeFields(String firstName, String lastName, String postalCode) {
         By xpath1 = FirstNameUserLocator;
         By xpath2 = LastNameUserLocator;
@@ -34,6 +37,7 @@ public class VerificationPage {
         return this;
     }
 
+    @Step()
     public FinishPage clickContinue() {
         By xpath = ContinueLocator;
         driver.findElement(xpath).click();

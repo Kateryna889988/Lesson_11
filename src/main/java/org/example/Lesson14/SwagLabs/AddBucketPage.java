@@ -1,5 +1,6 @@
 package org.example.Lesson14.SwagLabs;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.chrome.ChromeDriver;
 
@@ -10,10 +11,12 @@ public class AddBucketPage {
 
     private final ChromeDriver driver;
 
+
     public AddBucketPage(ChromeDriver driver) {
         this.driver = driver;
     }
 
+    @Step()
     public VerificationPage addBucket() {
         By xpath = BucketLocator;
         driver.findElement(xpath).click();

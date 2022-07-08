@@ -1,20 +1,16 @@
 package org.example.Lesson14.Makeup;
 
+import org.example.Lesson14.BasePage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 
-import java.time.Duration;
-
-public class BucketPage {
+public class BucketPage extends BasePage {
     By BucketLocator = By.xpath("//div[(contains(@class,'header-basket'))]/span[(contains(.,'Кошик'))]");
     By CheckoutLocator = By.xpath("//div[(contains(@class,'align-center'))]/div[(contains(., 'Оформити замовлення'))]");
 
-
-    private final ChromeDriver driver;
-
     public BucketPage(ChromeDriver driver) {
-        this.driver = driver;
+        super(driver);
     }
 
     public BucketPage bucket() {
@@ -29,12 +25,25 @@ public class BucketPage {
         return this;
     }
 
+
     public String getСompletedPurchase() {
         WebElement element = driver.findElement(By.xpath("//h1[(contains(@class,'page-header'))]"));
         return element.getText();
     }
 
-    public void explicitWait() {
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+    public BucketPage waitBucketPage() {
+        super.implicitlyWait();
+        return this;
+    }
+
+    public BucketPage waitBucket() {
+        super.waitClickableElement(BucketLocator);
+        return this;
+    }
+
+    public BucketPage waitCheckout() {
+        super.waitClickableElement(CheckoutLocator);
+        return this;
     }
 }
+

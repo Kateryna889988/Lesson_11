@@ -1,5 +1,6 @@
 package org.example.Lesson14.SwagLabs;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -16,13 +17,13 @@ public class FinishPage {
         this.driver = driver;
     }
 
-
+    @Step()
     public FinishPage clickFinish() {
         By xpath = FinishLocator;
         driver.findElement(xpath).click();
         return this;
     }
-
+    @Step()
     public String getСompletedPurchase() {
         WebElement element = driver.findElement(By.xpath("//h2[(contains(@class,'complete-header'))]"));
         return element.getText();

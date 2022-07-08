@@ -1,5 +1,6 @@
 package org.example.Lesson14.SwagLabs;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -18,25 +19,26 @@ public class LoginPage {
         this.driver = driver;
     }
 
-
+    @Step()
     public LoginPage userLogin(String login) {
         By xpath = userLoginLocator;
         driver.findElement(xpath).sendKeys(login);
         return this;
     }
-
+    @Step()
     public LoginPage userPassword(String password) {
         By xpath = userPasswordLocator;
         driver.findElement(xpath).sendKeys(password);
         return this;
     }
-
+    @Step()
     public MainPage clickLoginButton() {
         By xpath = loginButtonLocator;
         driver.findElement(xpath).click();
         return new MainPage(driver);
     }
 
+    @Step()
     public String getAuthorizedElement() {
         WebElement element = driver.findElement(By.xpath("//span[(contains(@class,'title'))]"));
         return element.getText();
@@ -46,7 +48,9 @@ public class LoginPage {
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
     }
 
+    @Step()
     public LoginPage openSite() {
+
         driver.get("https://www.saucedemo.com/");
         return this;
     }

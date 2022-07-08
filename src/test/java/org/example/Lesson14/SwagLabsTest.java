@@ -40,6 +40,8 @@ public class SwagLabsTest {
         String element = loginPage.getAuthorizedElement();
 
         assertTrue(element.equals("PRODUCTS"));
+
+        driver.close();
     }
 
     @Test
@@ -61,5 +63,7 @@ public class SwagLabsTest {
         String element = finishPage.getСompletedPurchase();
 
         assertTrue(element.equals("THANK YOU FOR YOUR ORDER"));
+
+        driver.close();
     }
 }
