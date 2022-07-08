@@ -1,23 +1,21 @@
 package org.example.Lesson14.Makeup;
 
+import org.example.Lesson14.BasePage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 
 import java.time.Duration;
 
-public class LoginPage {
+public class LoginPage extends BasePage {
     By userAccountMobileLocator = By.xpath("//div[contains(@data-popup-handler, 'auth') and (contains(@class, 'header-office'))]");
     By userAccountDesktopLocator = By.xpath("//div[contains(@data-popup-handler, 'auth') and (contains(text(),'Вхід до кабінету'))]");
     By userLoginLocator = By.xpath("//input[contains(@name, 'user_login')]");
     By userPasswordLocator = By.xpath("//input[contains(@name, 'user_pw')]");
     By loginButtonLocator = By.xpath("//button[(contains(text(),'Увійти'))]");
 
-
-    private final ChromeDriver driver;
-
     public LoginPage(ChromeDriver driver) {
-        this.driver = driver;
+        super(driver);
     }
 
     public boolean isMobile() {
@@ -44,8 +42,7 @@ public class LoginPage {
     }
 
     public MainPage clickLoginButton() {
-        By xpath = loginButtonLocator;
-        driver.findElement(xpath).click();
+        driver.findElement(loginButtonLocator).click();
         return new MainPage(driver);
     }
 
@@ -56,6 +53,17 @@ public class LoginPage {
 
     public void explicitWait() {
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+    }
+
+    public LoginPage waitMainPage() {
+        super.implicitlyWait();
+        return this;
+    }
+
+    public LoginPage waitUserAccount() {
+        By xpath = isMobile() ? userAccountMobileLocator : userAccountDesktopLocator;
+        super.waitClickableElement(xpath);
+        return this;
     }
 
     public LoginPage openSite() {

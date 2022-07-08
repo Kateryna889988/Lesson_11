@@ -1,5 +1,6 @@
 package org.example.Lesson14.SwagLabs;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.chrome.ChromeDriver;
 
@@ -13,7 +14,7 @@ public class MainPage {
         this.driver = driver;
     }
 
-
+    @Step()
     public AddBucketPage selectionsProduct() {
         By xpath = ProductSelectionLocator;
         driver.findElement(xpath).click();

@@ -1,14 +1,13 @@
 package org.example.Lesson14.Makeup;
 
+import org.example.Lesson14.BasePage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
 
-public class ProductPage {
+public class ProductPage extends BasePage {
 
     By BuyLocator = By.xpath("//div[(contains(@data-id,'657505'))]/div/div[(contains(.,'Купити'))]");
     By OpenFeedbackLocator = By.xpath("//div[(contains(@class,'align-center'))]/div[contains(@class, 'add-comment button-more')]");
@@ -18,10 +17,8 @@ public class ProductPage {
     By MessageUserLocator = By.xpath("//div[(contains(@class,'input-wrap'))]/textarea[contains(@name, 'body')]");
     By AddMessageLocator = By.xpath("//div[(contains(@class,'private-office__row status'))]/button[contains(@class, 'button')]");
 
-    private final ChromeDriver driver;
-
     public ProductPage(ChromeDriver driver) {
-        this.driver = driver;
+        super(driver);
     }
 
     public BucketPage clickBuy() {
@@ -64,10 +61,8 @@ public class ProductPage {
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
     }
 
-    public ProductPage implicitWait() {
-        String elementForWaiting = "//div[contains(@data-popup-handler, 'auth')]";
-        WebElement element = (new WebDriverWait(driver, Duration.ofSeconds(10)))
-                .until(ExpectedConditions.presenceOfElementLocated(By.xpath(elementForWaiting)));
+    public ProductPage waitBuy() {
+        super.waitClickableElement(BuyLocator);
         return this;
     }
 }
